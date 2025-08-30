@@ -17,6 +17,7 @@ export function CircularNav() {
   const navItemsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const rotationContainerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  const masterTimelineRef = useRef<gsap.core.Timeline | null>(null);
 
   const scrollToSection = (id: string) => {
     if (id === 'home') {
@@ -33,9 +34,13 @@ export function CircularNav() {
     if (isMobile === undefined) return;
 
     const ctx = gsap.context(() => {
+      if (masterTimelineRef.current) {
+        masterTimelineRef.current.revert();
+      }
+
       const radius = isMobile ? 180 : 320; 
 
-      const masterTl = gsap.timeline({ repeat: -1 });
+      masterTimelineRef.current = gsap.timeline({ repeat: -1 });
 
       navItemsRef.current.forEach((item, i) => {
         if (!item) return;
@@ -65,18 +70,18 @@ export function CircularNav() {
             ease: 'power1.inOut',
           });
 
-        masterTl.add(itemTl, i * 1.5); // Stagger by 1.5s
+        masterTimelineRef.current?.add(itemTl, i * 1.5); // Stagger by 1.5s
 
         item.addEventListener('mouseenter', () => {
           gsap.to(item, { scale: 1.2, duration: 0.3 });
           gsap.to(item.firstChild, { color: 'hsl(var(--accent))', duration: 0.3 });
-          masterTl.pause();
+          masterTimelineRef.current?.pause();
         });
 
         item.addEventListener('mouseleave', () => {
           gsap.to(item, { scale: 1, duration: 0.3 });
           gsap.to(item.firstChild, { color: navItemData.color.replace('text-',''), duration: 0.3 });
-          masterTl.resume();
+          masterTimelineRef.current?.resume();
         });
       });
     }, containerRef);
