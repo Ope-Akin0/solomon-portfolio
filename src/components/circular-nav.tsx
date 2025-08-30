@@ -6,10 +6,10 @@ import { Crown, FolderGit2, Home, Send, User } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const navItems = [
-  { id: 'home', icon: Home, label: 'Home', color: 'text-sky-400' },
-  { id: 'projects', icon: FolderGit2, label: 'Projects', color: 'text-green-400' },
-  { id: 'about', icon: User, label: 'About', color: 'text-amber-400' },
-  { id: 'contact', icon: Send, label: 'Contact', color: 'text-violet-400' },
+  { id: 'about', icon: User, label: 'About', color: 'text-amber-400', angle: -Math.PI / 2 }, // Top
+  { id: 'projects', icon: FolderGit2, label: 'Projects', color: 'text-green-400', angle: 0 }, // Right
+  { id: 'contact', icon: Send, label: 'Contact', color: 'text-violet-400', angle: Math.PI / 2 }, // Bottom
+  { id: 'home', icon: Home, label: 'Home', color: 'text-sky-400', angle: Math.PI }, // Left
 ];
 
 export function CircularNav() {
@@ -33,16 +33,17 @@ export function CircularNav() {
     if (isMobile === undefined) return;
 
     const ctx = gsap.context(() => {
-      const radius = isMobile ? 140 : 250; 
+      const radius = isMobile ? 180 : 320; 
+
+      const masterTl = gsap.timeline({ repeat: -1 });
 
       navItemsRef.current.forEach((item, i) => {
         if (!item) return;
-        // This ensures the icons are equally spaced in a circle
-        const angle = (i / navItems.length) * 2 * Math.PI;
+        const navItemData = navItems[i];
+        
+        const xPos = Math.cos(navItemData.angle) * radius;
+        const yPos = Math.sin(navItemData.angle) * radius;
 
-        // Position icons in a circle
-        const xPos = Math.cos(angle) * radius;
-        const yPos = Math.sin(angle) * radius;
         gsap.set(item, {
           x: xPos,
           y: yPos,
@@ -50,35 +51,32 @@ export function CircularNav() {
           yPercent: -50,
           position: 'absolute',
         });
-
-        // Create a random "sway" animation for each icon
-        const tl = gsap.timeline({
-          repeat: -1,
-          yoyo: true,
-          defaults: { ease: 'power1.inOut' },
-        });
         
-        tl.to(item, {
-          x: `+=${gsap.utils.random(-20, 20)}`,
-          y: `+=${gsap.utils.random(-10, 10)}`,
-          duration: gsap.utils.random(2.5, 4),
-        }).to(item, {
-          x: xPos,
-          y: yPos,
-          duration: gsap.utils.random(2.5, 4),
-        });
+        const itemTl = gsap.timeline();
+        itemTl
+          .to(item, {
+            x: '+=40', // move right
+            duration: 6,
+            ease: 'power1.inOut',
+          })
+          .to(item, {
+            x: xPos, // return to original x
+            duration: 6,
+            ease: 'power1.inOut',
+          });
 
+        masterTl.add(itemTl, i * 1.5); // Stagger by 1.5s
 
         item.addEventListener('mouseenter', () => {
           gsap.to(item, { scale: 1.2, duration: 0.3 });
           gsap.to(item.firstChild, { color: 'hsl(var(--accent))', duration: 0.3 });
-          tl.pause();
+          masterTl.pause();
         });
 
         item.addEventListener('mouseleave', () => {
           gsap.to(item, { scale: 1, duration: 0.3 });
-          gsap.to(item.firstChild, { color: gsap.getProperty(item.firstChild, 'color'), duration: 0.3 });
-          tl.resume();
+          gsap.to(item.firstChild, { color: navItemData.color.replace('text-',''), duration: 0.3 });
+          masterTl.resume();
         });
       });
     }, containerRef);
@@ -95,7 +93,7 @@ export function CircularNav() {
       <div className="absolute flex flex-col items-center pulse-breathing text-center z-10">
         <div className="relative">
           <Crown
-            className="h-24 w-24 md:h-32 md:w-32 text-transparent"
+            className="h-28 w-28 md:h-36 md:w-36 text-transparent"
             strokeWidth={1}
             fill="url(#logoGradient)"
           />
@@ -122,7 +120,7 @@ export function CircularNav() {
             className="cursor-pointer whitespace-nowrap"
             aria-label={`Scroll to ${label} section`}
           >
-            <Icon className={`h-16 w-16 md:h-20 md:w-20 transition-colors duration-300 ${color}`} strokeWidth={1.5} />
+            <Icon className={`h-20 w-20 md:h-24 md:w-24 transition-colors duration-300 ${color}`} strokeWidth={1} />
           </button>
         ))}
       </div>
