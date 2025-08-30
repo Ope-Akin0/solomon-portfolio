@@ -4,12 +4,13 @@ import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { Crown, FolderGit2, Home, Send, User } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import Link from 'next/link';
 
 const navItems = [
   { id: 'about', icon: User, label: 'About', color: 'text-amber-400', angle: -Math.PI / 2 }, // Top
   { id: 'projects', icon: FolderGit2, label: 'Projects', color: 'text-green-400', angle: 0 }, // Right
   { id: 'contact', icon: Send, label: 'Contact', color: 'text-violet-400', angle: Math.PI / 2 }, // Bottom
-  { id: 'home', icon: Home, label: 'Home', color: 'text-sky-400', angle: Math.PI }, // Left
+  { id: 'about', icon: Home, label: 'About', color: 'text-sky-400', angle: Math.PI }, // Left - Now links to about
 ];
 
 export function CircularNav() {
@@ -31,73 +32,32 @@ export function CircularNav() {
   };
 
   useLayoutEffect(() => {
-    if (isMobile === undefined) return;
-  
     const ctx = gsap.context(() => {
-      // Clear previous animations and timelines
       if (masterTimelineRef.current) {
         masterTimelineRef.current.revert();
       }
-  
+
       const radius = isMobile ? 180 : 320;
-  
       masterTimelineRef.current = gsap.timeline({ repeat: -1 });
-  
+
       navItemsRef.current.forEach((item, i) => {
         if (!item) return;
-        
-        const navItemData = navItems[i];
-        if (!navItemData) return;
 
+        const navItemData = navItems[i];
         const xPos = Math.cos(navItemData.angle) * radius;
         const yPos = Math.sin(navItemData.angle) * radius;
-  
-        gsap.set(item, {
-          x: xPos,
-          y: yPos,
-          xPercent: -50,
-          yPercent: -50,
-          position: 'absolute',
-        });
-  
+
+        gsap.set(item, { x: xPos, y: yPos, xPercent: -50, yPercent: -50, position: 'absolute' });
+        
         const itemTl = gsap.timeline();
         itemTl
-          .to(item, {
-            x: '+=40', // move right
-            duration: 6,
-            ease: 'power1.inOut',
-          })
-          .to(item, {
-            x: xPos, // return to original x
-            duration: 6,
-            ease: 'power1.inOut',
-          });
-  
-        masterTimelineRef.current?.add(itemTl, i * 1.5); // Stagger by 1.5s
-  
-        const mouseEnterHandler = () => {
-          gsap.to(item, { scale: 1.2, duration: 0.3 });
-          gsap.to(item.firstChild, { color: 'hsl(var(--accent))', duration: 0.3 });
-          masterTimelineRef.current?.pause();
-        };
-
-        const mouseLeaveHandler = () => {
-          gsap.to(item, { scale: 1, duration: 0.3 });
-          gsap.to(item.firstChild, { color: navItemData.color.replace('text-',''), duration: 0.3 });
-          masterTimelineRef.current?.resume();
-        };
-
-        item.addEventListener('mouseenter', mouseEnterHandler);
-        item.addEventListener('mouseleave', mouseLeaveHandler);
-
-        // Return a cleanup function for this item
-        return () => {
-            item.removeEventListener('mouseenter', mouseEnterHandler);
-            item.removeEventListener('mouseleave', mouseLeaveHandler);
-        }
+          .to(item, { x: '+=40', duration: 6, ease: 'power1.inOut' })
+          .to(item, { x: xPos, duration: 6, ease: 'power1.inOut' });
+          
+        masterTimelineRef.current!.add(itemTl, i * 1.5);
       });
     }, containerRef);
-  
+
     return () => ctx.revert();
   }, [isMobile]);
 
@@ -107,7 +67,11 @@ export function CircularNav() {
       ref={containerRef}
       className="relative flex h-screen w-full items-center justify-center overflow-hidden"
     >
-      <div className="absolute flex flex-col items-center pulse-breathing text-center z-10">
+      <div 
+        className="absolute flex flex-col items-center pulse-breathing text-center z-10 cursor-pointer"
+        onClick={() => scrollToSection('home')}
+        aria-label="Scroll to home"
+      >
         <div className="relative">
           <Crown
             className="h-28 w-28 md:h-36 md:w-36 text-transparent"
@@ -131,7 +95,7 @@ export function CircularNav() {
       <div ref={rotationContainerRef} className="absolute flex items-center justify-center">
         {navItems.map(({ id, icon: Icon, label, color }, i) => (
           <button
-            key={id}
+            key={`${id}-${i}`}
             ref={(el) => (navItemsRef.current[i] = el)}
             onClick={() => scrollToSection(id)}
             className="cursor-pointer whitespace-nowrap"
