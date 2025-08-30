@@ -11,7 +11,7 @@ import { auth } from '@/lib/firebase';
 import { AddProjectForm } from './add-project-form';
 import { Spinner } from '@/components/ui/spinner';
 import { useToast } from '@/hooks/use-toast';
-import { Orbit, LogIn, LogOut } from 'lucide-react';
+import { LogIn, LogOut } from 'lucide-react';
 import Link from 'next/link';
 
 function LoginForm() {
@@ -42,8 +42,23 @@ function LoginForm() {
       <Card className="w-full max-w-sm">
         <CardHeader className="text-center">
           <div className="flex justify-center items-center gap-2 mb-2">
-             <Orbit className="h-8 w-8 text-primary" />
-             <CardTitle className="text-2xl">OrbitalFolio Admin</CardTitle>
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+            >
+              <defs>
+                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: 'rgb(56 189 248)', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: 'rgb(217 70 239)', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
+              <path
+                fill="url(#logoGradient)"
+                d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-1.13 15.3l-3.32-3.32a.75.75 0 0 1 1.06-1.06l2.79 2.79l6.22-6.22a.75.75 0 0 1 1.06 1.06z"
+              />
+            </svg>
+             <CardTitle className="text-2xl text-gradient">AsodTech Admin</CardTitle>
           </div>
           <CardDescription>Enter your credentials to access the dashboard.</CardDescription>
         </CardHeader>
@@ -91,8 +106,23 @@ function AdminPanel() {
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 flex h-16 items-center justify-between border-b bg-card px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
-          <Orbit className="h-6 w-6 text-primary" />
-          <span className="font-semibold text-white">OrbitalFolio</span>
+           <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <defs>
+                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: 'rgb(56 189 248)', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: 'rgb(217 70 239)', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
+              <path
+                fill="url(#logoGradient)"
+                d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-1.13 15.3l-3.32-3.32a.75.75 0 0 1 1.06-1.06l2.79 2.79l6.22-6.22a.75.75 0 0 1 1.06 1.06z"
+              />
+            </svg>
+          <span className="font-semibold text-gradient">AsodTech</span>
         </Link>
         <div className="flex items-center gap-4">
           <span className="text-sm text-muted-foreground hidden sm:inline">{user?.email}</span>
