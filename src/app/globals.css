@@ -109,4 +109,17 @@
   .text-gradient {
     @apply text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500;
   }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 20s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
 }
