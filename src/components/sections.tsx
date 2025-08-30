@@ -21,11 +21,11 @@ const AboutSection: FC = () => {
           />
         </div>
         <div className="md:col-span-2">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">About Me</h2>
-          <p className="text-lg text-slate-300 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">About Me</h2>
+          <p className="text-lg text-muted-foreground mb-4">
             I'm a passionate web designer and developer with a love for creating fluid, intuitive, and dynamic user experiences. My expertise lies in turning complex problems into beautiful, interactive designs.
           </p>
-          <p className="text-lg text-slate-300 mb-8">
+          <p className="text-lg text-muted-foreground mb-8">
             With a strong foundation in modern frontend technologies, I enjoy bringing ideas to life in the browser.
           </p>
           <div className="flex flex-wrap gap-4">
@@ -48,8 +48,8 @@ const ContactSection: FC = () => {
   return (
     <section id="contact" className="min-h-screen py-20 px-4 md:px-8 flex items-center justify-center">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Get In Touch</h2>
-        <p className="text-lg text-slate-300 mb-8">
+        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Get In Touch</h2>
+        <p className="text-lg text-muted-foreground mb-8">
           I'm currently available for freelance work. If you have a project in mind or just want to say hi, feel free to reach out.
         </p>
         <div className="flex justify-center items-center gap-6">

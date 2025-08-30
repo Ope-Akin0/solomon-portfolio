@@ -9,7 +9,7 @@ export async function SubtleGradientBackground() {
     const fullCss = `
       ${cssAnimation}
       .animated-gradient-bg {
-        background: linear-gradient(-45deg, hsl(222 47% 11%), hsl(222 39% 16%), hsl(220 30% 25%), hsl(222 47% 11%));
+        background: linear-gradient(-45deg, hsl(0 0% 100%), hsl(0 0% 98%), hsl(0 0% 96%), hsl(0 0% 100%));
         background-size: 400% 400%;
         animation: gradient 25s ease infinite;
       }
@@ -21,7 +21,7 @@ export async function SubtleGradientBackground() {
     // Fallback static gradient
     const fallbackCss = `
       .animated-gradient-bg {
-        background: hsl(222 47% 11%);
+        background: hsl(0 0% 100%);
       }
     `;
     return <style dangerouslySetInnerHTML={{ __html: fallbackCss }} />;

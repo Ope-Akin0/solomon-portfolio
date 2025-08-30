@@ -12,7 +12,7 @@ interface ProjectCardProps {
 
 export const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
   return (
-    <Card className="group flex flex-col overflow-hidden bg-card/50 backdrop-blur-sm border-accent/20 hover:border-accent transition-all duration-300 hover:shadow-lg hover:shadow-accent/10 transform hover:-translate-y-2">
+    <Card className="group flex flex-col overflow-hidden bg-card/50 backdrop-blur-sm border-border/20 hover:border-accent transition-all duration-300 hover:shadow-lg hover:shadow-accent/10 transform hover:-translate-y-2">
       <CardHeader className="p-0">
         <div className="relative h-48 w-full">
           <Image
@@ -25,8 +25,8 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
         </div>
       </CardHeader>
       <CardContent className="flex-grow p-6">
-        <CardTitle className="text-2xl font-bold text-white mb-2">{project.title}</CardTitle>
-        <CardDescription className="text-slate-300 mb-4 h-20 overflow-hidden">{project.description}</CardDescription>
+        <CardTitle className="text-2xl font-bold text-foreground mb-2">{project.title}</CardTitle>
+        <CardDescription className="text-muted-foreground mb-4 h-20 overflow-hidden">{project.description}</CardDescription>
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <Badge key={tag} variant="secondary" className="bg-primary/20 text-primary border-none">
