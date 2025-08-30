@@ -27,15 +27,12 @@ const prompt = ai.definePrompt({
   name: 'generateSubtleGradientPrompt',
   input: {schema: GenerateSubtleGradientInputSchema},
   output: {schema: GenerateSubtleGradientOutputSchema},
-  prompt: `You are a CSS animation expert.
-
-  Generate a subtle, slowly-shifting gradient animation using CSS keyframes. The gradient should smoothly transition between a few shades of dark grey/slate, creating a 'breathing' effect suitable for a portfolio website background. The animation should be infinitely looping and optimized for performance.
-
-  The output should be the complete CSS code for the animation, ready to be included in a <style> tag or CSS file.
-
-  Do not include any HTML or other code, only the CSS keyframes and animation properties.
-
-  Do not repeat yourself, use as few lines as possible.
+  prompt: `
+    Generate CSS keyframes for a subtle, slow-shifting gradient.
+    - Name the animation 'gradient'.
+    - The animation should be infinite and take 25 seconds.
+    - It should smoothly transition between shades of dark grey/slate for a 'breathing' effect.
+    - Output only the @keyframes CSS code.
   `,
 });
 
