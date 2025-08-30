@@ -30,57 +30,56 @@ export function CircularNav() {
   };
 
   useLayoutEffect(() => {
-    if (isMobile === undefined) return; // Wait until isMobile is determined
+    if (isMobile === undefined) return;
 
     const ctx = gsap.context(() => {
-      const radius = isMobile ? 120 : 180;
-      const rotationSpeed = 30; // seconds per rotation
+        const radius = isMobile ? 120 : 180;
+        const rotationSpeed = 30;
 
-      timeline.current = gsap.timeline({ repeat: -1 });
-
-      navItemsRef.current.forEach((item, i) => {
-        if (!item) return;
-        // The angle needs to be offset by -PI/2 to start the first item at the top (12 o'clock)
-        const angle = (i / navItems.length) * 2 * Math.PI - Math.PI / 2;
-
-        gsap.set(item, {
-          x: Math.cos(angle) * radius,
-          y: Math.sin(angle) * radius,
-          xPercent: -50,
-          yPercent: -50,
-          position: 'absolute',
-        });
-
-        timeline.current?.to(
-          item,
-          {
-            rotation: '+=360',
+        // Animate the container to rotate
+        timeline.current = gsap.timeline({ repeat: -1, ease: "none" });
+        timeline.current.to(containerRef.current, {
+            rotation: 360,
             duration: rotationSpeed,
-            ease: 'none',
-            // Correct transformOrigin for a perfect circular path around the center (0,0) of the parent
-            transformOrigin: `${-Math.cos(angle) * radius}px ${-Math.sin(angle) * radius}px`,
-          },
-          0
-        );
-
-        item.addEventListener('mouseenter', () => {
-          timeline.current?.pause();
-          gsap.to(item, { scale: 1.2, duration: 0.3 });
-          // The color is applied to the SVG child
-          gsap.to(item.firstChild, { color: 'hsl(var(--accent))', duration: 0.3 });
         });
 
-        item.addEventListener('mouseleave', () => {
-          timeline.current?.play();
-          gsap.to(item, { scale: 1, duration: 0.3 });
-          // Animate back to original color
-           gsap.to(item.firstChild, { color: gsap.getProperty(item.firstChild, "color"), duration: 0.3 });
+        navItemsRef.current.forEach((item, i) => {
+            if (!item) return;
+            const angle = (i / navItems.length) * 2 * Math.PI;
+
+            // Position icons in a circle
+            gsap.set(item, {
+                x: Math.cos(angle) * radius,
+                y: Math.sin(angle) * radius,
+                xPercent: -50,
+                yPercent: -50,
+                position: 'absolute',
+            });
+            
+            // Make icons counter-rotate to stay upright
+            gsap.to(item, {
+              rotation: "-=360",
+              duration: rotationSpeed,
+              repeat: -1,
+              ease: "none",
+            });
+
+            item.addEventListener('mouseenter', () => {
+                timeline.current?.pause();
+                gsap.to(item, { scale: 1.2, duration: 0.3 });
+                gsap.to(item.firstChild, { color: 'hsl(var(--accent))', duration: 0.3 });
+            });
+
+            item.addEventListener('mouseleave', () => {
+                timeline.current?.play();
+                gsap.to(item, { scale: 1, duration: 0.3 });
+                gsap.to(item.firstChild, { color: gsap.getProperty(item.firstChild, "color"), duration: 0.3 });
+            });
         });
-      });
     }, containerRef);
 
     return () => ctx.revert();
-  }, [isMobile]);
+}, [isMobile]);
 
   return (
     <div
