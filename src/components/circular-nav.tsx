@@ -32,23 +32,26 @@ export function CircularNav() {
 
   useLayoutEffect(() => {
     if (isMobile === undefined) return;
-
+  
     const ctx = gsap.context(() => {
+      // Clear previous animations and timelines
       if (masterTimelineRef.current) {
         masterTimelineRef.current.revert();
       }
-
-      const radius = isMobile ? 180 : 320; 
-
+  
+      const radius = isMobile ? 180 : 320;
+  
       masterTimelineRef.current = gsap.timeline({ repeat: -1 });
-
+  
       navItemsRef.current.forEach((item, i) => {
         if (!item) return;
-        const navItemData = navItems[i];
         
+        const navItemData = navItems[i];
+        if (!navItemData) return;
+
         const xPos = Math.cos(navItemData.angle) * radius;
         const yPos = Math.sin(navItemData.angle) * radius;
-
+  
         gsap.set(item, {
           x: xPos,
           y: yPos,
@@ -56,7 +59,7 @@ export function CircularNav() {
           yPercent: -50,
           position: 'absolute',
         });
-        
+  
         const itemTl = gsap.timeline();
         itemTl
           .to(item, {
@@ -69,23 +72,32 @@ export function CircularNav() {
             duration: 6,
             ease: 'power1.inOut',
           });
-
+  
         masterTimelineRef.current?.add(itemTl, i * 1.5); // Stagger by 1.5s
-
-        item.addEventListener('mouseenter', () => {
+  
+        const mouseEnterHandler = () => {
           gsap.to(item, { scale: 1.2, duration: 0.3 });
           gsap.to(item.firstChild, { color: 'hsl(var(--accent))', duration: 0.3 });
           masterTimelineRef.current?.pause();
-        });
+        };
 
-        item.addEventListener('mouseleave', () => {
+        const mouseLeaveHandler = () => {
           gsap.to(item, { scale: 1, duration: 0.3 });
           gsap.to(item.firstChild, { color: navItemData.color.replace('text-',''), duration: 0.3 });
           masterTimelineRef.current?.resume();
-        });
+        };
+
+        item.addEventListener('mouseenter', mouseEnterHandler);
+        item.addEventListener('mouseleave', mouseLeaveHandler);
+
+        // Return a cleanup function for this item
+        return () => {
+            item.removeEventListener('mouseenter', mouseEnterHandler);
+            item.removeEventListener('mouseleave', mouseLeaveHandler);
+        }
       });
     }, containerRef);
-
+  
     return () => ctx.revert();
   }, [isMobile]);
 
