@@ -15,6 +15,7 @@ const navItems = [
 export function CircularNav() {
   const containerRef = useRef<HTMLDivElement>(null);
   const navItemsRef = useRef<(HTMLButtonElement | null)[]>([]);
+  const rotationContainerRef = useRef<HTMLDivElement>(null);
   const timeline = useRef<gsap.core.Timeline | null>(null);
   const isMobile = useIsMobile();
 
@@ -38,7 +39,7 @@ export function CircularNav() {
 
         // Animate the container to rotate
         timeline.current = gsap.timeline({ repeat: -1, ease: "none" });
-        timeline.current.to(containerRef.current, {
+        timeline.current.to(rotationContainerRef.current, {
             rotation: 360,
             duration: rotationSpeed,
         });
@@ -84,30 +85,31 @@ export function CircularNav() {
   return (
     <div
       id="home"
+      ref={containerRef}
       className="relative flex h-screen w-full items-center justify-center overflow-hidden"
     >
-      <div ref={containerRef} className="relative flex items-center justify-center">
-        <div className="absolute flex flex-col items-center pulse-breathing text-center">
-           <div className="relative">
-              <Crown
-                className="h-24 w-24 md:h-32 md:w-32 text-transparent"
-                strokeWidth={1}
-                fill="url(#logoGradient)"
-              />
-              <svg width="0" height="0" style={{ position: 'absolute' }}>
-                <defs>
-                  <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style={{ stopColor: 'rgb(56 189 248)', stopOpacity: 1 }} />
-                    <stop offset="100%" style={{ stopColor: 'rgb(217 70 239)', stopOpacity: 1 }} />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          <h1 className="text-3xl md:text-5xl font-bold mt-4 text-gradient">
-            AsodTech
-          </h1>
-        </div>
-
+      <div className="absolute flex flex-col items-center pulse-breathing text-center z-10">
+         <div className="relative">
+            <Crown
+              className="h-24 w-24 md:h-32 md:w-32 text-transparent"
+              strokeWidth={1}
+              fill="url(#logoGradient)"
+            />
+            <svg width="0" height="0" style={{ position: 'absolute' }}>
+              <defs>
+                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: 'rgb(56 189 248)', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: 'rgb(217 70 239)', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        <h1 className="text-3xl md:text-5xl font-bold mt-4 text-gradient">
+          AsodTech
+        </h1>
+      </div>
+      
+      <div ref={rotationContainerRef} className="absolute flex items-center justify-center">
         {navItems.map(({ id, icon: Icon, label, color }, i) => (
           <button
             key={id}
