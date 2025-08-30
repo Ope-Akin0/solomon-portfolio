@@ -33,16 +33,19 @@ export function CircularNav() {
     if (isMobile === undefined) return;
 
     const ctx = gsap.context(() => {
-      const radius = isMobile ? 140 : 250; // Increased radius for more space
+      const radius = isMobile ? 140 : 250; 
 
       navItemsRef.current.forEach((item, i) => {
         if (!item) return;
+        // This ensures the icons are equally spaced in a circle
         const angle = (i / navItems.length) * 2 * Math.PI;
 
         // Position icons in a circle
+        const xPos = Math.cos(angle) * radius;
+        const yPos = Math.sin(angle) * radius;
         gsap.set(item, {
-          x: Math.cos(angle) * radius,
-          y: Math.sin(angle) * radius,
+          x: xPos,
+          y: yPos,
           xPercent: -50,
           yPercent: -50,
           position: 'absolute',
@@ -57,11 +60,14 @@ export function CircularNav() {
         
         tl.to(item, {
           x: `+=${gsap.utils.random(-20, 20)}`,
+          y: `+=${gsap.utils.random(-10, 10)}`,
           duration: gsap.utils.random(2.5, 4),
         }).to(item, {
-          x: `+=${gsap.utils.random(-20, 20)}`,
+          x: xPos,
+          y: yPos,
           duration: gsap.utils.random(2.5, 4),
         });
+
 
         item.addEventListener('mouseenter', () => {
           gsap.to(item, { scale: 1.2, duration: 0.3 });
