@@ -40,8 +40,8 @@ export function CircularNav() {
 
       navItemsRef.current.forEach((item, i) => {
         if (!item) return;
-        const angle = (i / navItems.length) * 2 * Math.PI;
-        const itemData = navItems[i];
+        // The angle needs to be offset by -PI/2 to start the first item at the top (12 o'clock)
+        const angle = (i / navItems.length) * 2 * Math.PI - Math.PI / 2;
 
         gsap.set(item, {
           x: Math.cos(angle) * radius,
@@ -57,6 +57,7 @@ export function CircularNav() {
             rotation: '+=360',
             duration: rotationSpeed,
             ease: 'none',
+            // Correct transformOrigin for a perfect circular path around the center (0,0) of the parent
             transformOrigin: `${-Math.cos(angle) * radius}px ${-Math.sin(angle) * radius}px`,
           },
           0
