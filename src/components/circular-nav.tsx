@@ -16,7 +16,6 @@ export function CircularNav() {
   const containerRef = useRef<HTMLDivElement>(null);
   const navItemsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const rotationContainerRef = useRef<HTMLDivElement>(null);
-  const timeline = useRef<gsap.core.Timeline | null>(null);
   const isMobile = useIsMobile();
 
   const scrollToSection = (id: string) => {
@@ -34,53 +33,52 @@ export function CircularNav() {
     if (isMobile === undefined) return;
 
     const ctx = gsap.context(() => {
-        const radius = isMobile ? 120 : 180;
-        const rotationSpeed = 30;
+      const radius = isMobile ? 140 : 250; // Increased radius for more space
 
-        // Animate the container to rotate
-        timeline.current = gsap.timeline({ repeat: -1, ease: "none" });
-        timeline.current.to(rotationContainerRef.current, {
-            rotation: 360,
-            duration: rotationSpeed,
+      navItemsRef.current.forEach((item, i) => {
+        if (!item) return;
+        const angle = (i / navItems.length) * 2 * Math.PI;
+
+        // Position icons in a circle
+        gsap.set(item, {
+          x: Math.cos(angle) * radius,
+          y: Math.sin(angle) * radius,
+          xPercent: -50,
+          yPercent: -50,
+          position: 'absolute',
         });
 
-        navItemsRef.current.forEach((item, i) => {
-            if (!item) return;
-            const angle = (i / navItems.length) * 2 * Math.PI;
-
-            // Position icons in a circle
-            gsap.set(item, {
-                x: Math.cos(angle) * radius,
-                y: Math.sin(angle) * radius,
-                xPercent: -50,
-                yPercent: -50,
-                position: 'absolute',
-            });
-            
-            // Make icons counter-rotate to stay upright
-            gsap.to(item, {
-              rotation: "-=360",
-              duration: rotationSpeed,
-              repeat: -1,
-              ease: "none",
-            });
-
-            item.addEventListener('mouseenter', () => {
-                timeline.current?.pause();
-                gsap.to(item, { scale: 1.2, duration: 0.3 });
-                gsap.to(item.firstChild, { color: 'hsl(var(--accent))', duration: 0.3 });
-            });
-
-            item.addEventListener('mouseleave', () => {
-                timeline.current?.play();
-                gsap.to(item, { scale: 1, duration: 0.3 });
-                gsap.to(item.firstChild, { color: gsap.getProperty(item.firstChild, "color"), duration: 0.3 });
-            });
+        // Create a random "sway" animation for each icon
+        const tl = gsap.timeline({
+          repeat: -1,
+          yoyo: true,
+          defaults: { ease: 'power1.inOut' },
         });
+        
+        tl.to(item, {
+          x: `+=${gsap.utils.random(-20, 20)}`,
+          duration: gsap.utils.random(2.5, 4),
+        }).to(item, {
+          x: `+=${gsap.utils.random(-20, 20)}`,
+          duration: gsap.utils.random(2.5, 4),
+        });
+
+        item.addEventListener('mouseenter', () => {
+          gsap.to(item, { scale: 1.2, duration: 0.3 });
+          gsap.to(item.firstChild, { color: 'hsl(var(--accent))', duration: 0.3 });
+          tl.pause();
+        });
+
+        item.addEventListener('mouseleave', () => {
+          gsap.to(item, { scale: 1, duration: 0.3 });
+          gsap.to(item.firstChild, { color: gsap.getProperty(item.firstChild, 'color'), duration: 0.3 });
+          tl.resume();
+        });
+      });
     }, containerRef);
 
     return () => ctx.revert();
-}, [isMobile]);
+  }, [isMobile]);
 
   return (
     <div
@@ -89,21 +87,21 @@ export function CircularNav() {
       className="relative flex h-screen w-full items-center justify-center overflow-hidden"
     >
       <div className="absolute flex flex-col items-center pulse-breathing text-center z-10">
-         <div className="relative">
-            <Crown
-              className="h-24 w-24 md:h-32 md:w-32 text-transparent"
-              strokeWidth={1}
-              fill="url(#logoGradient)"
-            />
-            <svg width="0" height="0" style={{ position: 'absolute' }}>
-              <defs>
-                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: 'rgb(56 189 248)', stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: 'rgb(217 70 239)', stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
+        <div className="relative">
+          <Crown
+            className="h-24 w-24 md:h-32 md:w-32 text-transparent"
+            strokeWidth={1}
+            fill="url(#logoGradient)"
+          />
+          <svg width="0" height="0" style={{ position: 'absolute' }}>
+            <defs>
+              <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style={{ stopColor: 'rgb(56 189 248)', stopOpacity: 1 }} />
+                <stop offset="100%" style={{ stopColor: 'rgb(217 70 239)', stopOpacity: 1 }} />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
         <h1 className="text-3xl md:text-5xl font-bold mt-4 text-gradient">
           AsodTech
         </h1>
@@ -118,7 +116,7 @@ export function CircularNav() {
             className="cursor-pointer whitespace-nowrap"
             aria-label={`Scroll to ${label} section`}
           >
-            <Icon className={`h-12 w-12 md:h-16 md:w-16 transition-colors duration-300 ${color}`} />
+            <Icon className={`h-16 w-16 md:h-20 md:w-20 transition-colors duration-300 ${color}`} strokeWidth={1.5} />
           </button>
         ))}
       </div>
