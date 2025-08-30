@@ -2,7 +2,7 @@
 
 import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { Asteroid, FolderGit2, Home, Send, User } from 'lucide-react';
+import { Crown, FolderGit2, Home, Send, User } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const navItems = [
@@ -33,7 +33,7 @@ export function CircularNav() {
     if (isMobile === undefined) return; // Wait until isMobile is determined
 
     const ctx = gsap.context(() => {
-      const radius = isMobile ? 100 : 150;
+      const radius = isMobile ? 120 : 180;
       const rotationSpeed = 30; // seconds per rotation
 
       timeline.current = gsap.timeline({ repeat: -1 });
@@ -89,23 +89,21 @@ export function CircularNav() {
     >
       <div ref={containerRef} className="relative flex items-center justify-center">
         <div className="absolute flex flex-col items-center pulse-breathing text-center">
-           <svg
-            width="80"
-            height="80"
-            viewBox="0 0 24 24"
-            className="h-20 w-20 md:h-28 md:w-28"
-          >
-            <defs>
-              <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{ stopColor: 'rgb(56 189 248)', stopOpacity: 1 }} />
-                <stop offset="100%" style={{ stopColor: 'rgb(217 70 239)', stopOpacity: 1 }} />
-              </linearGradient>
-            </defs>
-            <path
-              fill="url(#logoGradient)"
-              d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-1.13 15.3l-3.32-3.32a.75.75 0 0 1 1.06-1.06l2.79 2.79l6.22-6.22a.75.75 0 0 1 1.06 1.06z"
-            />
-          </svg>
+           <div className="relative">
+              <Crown
+                className="h-24 w-24 md:h-32 md:w-32 text-transparent"
+                strokeWidth={1}
+                fill="url(#logoGradient)"
+              />
+              <svg width="0" height="0" style={{ position: 'absolute' }}>
+                <defs>
+                  <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style={{ stopColor: 'rgb(56 189 248)', stopOpacity: 1 }} />
+                    <stop offset="100%" style={{ stopColor: 'rgb(217 70 239)', stopOpacity: 1 }} />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
           <h1 className="text-3xl md:text-5xl font-bold mt-4 text-gradient">
             AsodTech
           </h1>
@@ -119,7 +117,7 @@ export function CircularNav() {
             className="cursor-pointer whitespace-nowrap"
             aria-label={`Scroll to ${label} section`}
           >
-            <Icon className={`h-10 w-10 md:h-12 md:w-12 transition-colors duration-300 ${color}`} />
+            <Icon className={`h-12 w-12 md:h-16 md:w-16 transition-colors duration-300 ${color}`} />
           </button>
         ))}
       </div>
