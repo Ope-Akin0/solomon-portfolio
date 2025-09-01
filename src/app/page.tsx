@@ -7,6 +7,11 @@ export default function Home() {
   return (
     <div className="relative min-h-screen overflow-x-hidden animated-gradient-bg">
       <SubtleGradientBackground />
+      <div className="absolute top-8 left-8 z-20">
+        <h2 className="text-4xl md:text-5xl font-bold text-white">
+          YOU IMAGINE, <br /> WE CREATE
+        </h2>
+      </div>
       <div className="absolute top-8 right-8 z-20">
         <div className="relative w-32 h-32 md:w-48 md:h-48">
           <Image
