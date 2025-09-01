@@ -19,9 +19,9 @@ export default function Home() {
         </div>
       </div>
       <Image
-        src="/site.jpg"
-        alt="Celestial background"
-        data-ai-hint="starry nebula"
+        src="https://picsum.photos/1920/1080"
+        alt="Tech background"
+        data-ai-hint="robotic arm"
         fill
         className="object-cover opacity-20 mix-blend-soft-light animate-pulse-slow"
       />
