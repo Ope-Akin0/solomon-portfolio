@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { Card } from '@/components/ui/card';
-import { ProjectsSectionWithText } from '@/components/projects-section-with-text';
+import { ProjectsSection } from '@/components/projects-section';
 import { Button } from './ui/button';
 import { Github, Linkedin, Mail, User, Code } from 'lucide-react';
 import Image from 'next/image';
@@ -75,11 +75,22 @@ const ContactSection: FC = () => {
   );
 };
 
+const ProjectsSectionWithHeader = () => {
+    return (
+        <section id="projects" className="min-h-screen py-20 px-4 md:px-8">
+            <div className="relative max-w-7xl mx-auto">
+                <h2 className="text-4xl md:text-5xl font-bold text-center text-foreground mb-12">Projects</h2>
+                <ProjectsSection />
+            </div>
+        </section>
+    );
+};
+
 
 export const Sections = () => {
   return (
     <div className="relative z-0">
-      <ProjectsSectionWithText />
+      <ProjectsSectionWithHeader />
       <AboutSection />
       <ContactSection />
     </div>

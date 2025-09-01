@@ -3,36 +3,56 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-export function AnimatedServices() {
-  const serviceRef = useRef<HTMLDivElement>(null);
+const AnimatedText = ({ text, positionClasses }: { text: string; positionClasses: string }) => {
+  const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = serviceRef.current;
-    if (el) {
+    const el = textRef.current;
+    if (!el) return;
+    
+    const animate = () => {
       gsap.fromTo(
         el,
-        { opacity: 0 },
+        { opacity: 0, y: -20 },
         {
           opacity: 1,
+          y: 0,
           duration: 1.5,
+          delay: Math.random() * 2,
           onComplete: () => {
             gsap.to(el, {
               opacity: 0,
+              y: 20,
               duration: 1.5,
-              delay: 2, // 1.5s fade-in + 2s visible + 1.5s fade-out = 5s total cycle
+              delay: 3, 
+              onComplete: animate,
             });
           },
         }
       );
-    }
+    };
+    
+    animate();
+
   }, []);
 
   return (
     <div 
-        ref={serviceRef} 
-        className="absolute top-1/2 left-1/2 -translate-y-1/2 translate-x-[8rem] md:translate-x-[12rem] text-2xl md:text-3xl font-bold whitespace-nowrap text-glow"
+      ref={textRef} 
+      className={`absolute text-xl md:text-2xl font-bold text-white text-glow-faint hidden md:block ${positionClasses}`}
+      style={{ opacity: 0 }}
     >
-      Web Development
+      {text}
     </div>
+  );
+};
+
+
+export function AnimatedServices() {
+  return (
+    <>
+      <AnimatedText text="Full-Stack Expertise" positionClasses="bottom-1/4 left-1/4" />
+      <AnimatedText text="Modern Web Solutions" positionClasses="bottom-1/4 right-1/4" />
+    </>
   );
 }
