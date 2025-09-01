@@ -13,11 +13,15 @@ export default function Home() {
         <div className="flex items-center gap-4">
           <div className="flex flex-col gap-2">
             <div className="h-2 w-16 bg-cyan-400 rounded-full"></div>
-            <div className="h-2 w-16 bg-white rounded-full"></div>
+            <div className="h-2 w-12 bg-white rounded-full"></div>
           </div>
           <h2 className="text-5xl md:text-6xl font-bold text-white text-outline-cyan">
             YOU IMAGINE, <br /> WE CREATE
           </h2>
+           <div className="flex flex-col gap-2">
+            <div className="h-2 w-12 bg-cyan-400 rounded-full"></div>
+            <div className="h-2 w-16 bg-white rounded-full"></div>
+          </div>
         </div>
       </div>
       <Link href="#work-with-me" className="absolute top-8 right-8 z-20">
