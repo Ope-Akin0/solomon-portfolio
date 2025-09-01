@@ -7,16 +7,10 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from './ui/button';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export const ProjectsSection: FC = () => {
   const { projects, loading } = useProjects();
-
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -45,12 +39,14 @@ export const ProjectsSection: FC = () => {
       )}
        <div className="mt-16 text-center">
           <Button 
+            asChild
             size="lg" 
             className="bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-primary-foreground text-lg font-bold py-8 px-12 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-            onClick={scrollToContact}
           >
-            WORK WITH ME
-            <ArrowRight className="ml-2 h-6 w-6" />
+            <a href="mailto:opeakin2022@gmail.com">
+              WORK WITH ME
+              <ArrowRight className="ml-2 h-6 w-6" />
+            </a>
           </Button>
       </div>
     </div>
