@@ -2,16 +2,41 @@
 
 import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { Crown, FolderGit2, Home, Send, User } from 'lucide-react';
+import { Crown } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import Link from 'next/link';
 
+const UserIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+  </svg>
+);
+
+const ProjectsIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M22 8.54V4.46C22 3.12 20.88 2 19.54 2H4.46C3.12 2 2 3.12 2 4.46v15.08C2 20.88 3.12 22 4.46 22h15.08c1.34 0 2.46-1.12 2.46-2.46v-4.08c0-.49-.31-.92-.78-1.07l-1.62-.54c-.6-.2-1.29.11-1.5.71l-1.39 4.17c-.21.63-.84 1.05-1.52 1.05H6.27c-.68 0-1.31-.42-1.52-1.05L3.36 12.6c-.21-.63.11-1.29.71-1.5l4.17-1.39c.63-.21 1.05-.84 1.05-1.52V6.27c0-.68.42-1.31 1.05-1.52l4.11-1.36c.63-.21 1.29.11 1.5.71l1.36 4.11c.2.6.79.93 1.37.83l1.83-.3z" />
+  </svg>
+);
+
+const ContactIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+  </svg>
+);
+
+const HomeIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+  </svg>
+);
+
 const navItems = [
-  { id: 'about', icon: User, label: 'About', color: 'text-amber-400', angle: -Math.PI / 2 }, // Top
-  { id: 'projects', icon: FolderGit2, label: 'Projects', color: 'text-green-400', angle: 0 }, // Right
-  { id: 'contact', icon: Send, label: 'Contact', color: 'text-violet-400', angle: Math.PI / 2 }, // Bottom
-  { id: 'about', icon: Home, label: 'About', color: 'text-sky-400', angle: Math.PI }, // Left - Now links to about
+  { id: 'projects', icon: ProjectsIcon, label: 'Projects', color: 'text-green-400', angle: -Math.PI / 2 }, // Top
+  { id: 'about', icon: UserIcon, label: 'About', color: 'text-amber-400', angle: 0 }, // Right
+  { id: 'contact', icon: ContactIcon, label: 'Contact', color: 'text-violet-400', angle: Math.PI / 2 }, // Bottom
+  { id: 'home', icon: HomeIcon, label: 'Home', color: 'text-sky-400', angle: Math.PI }, // Left
 ];
+
 
 export function CircularNav() {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -8,7 +8,7 @@ export default function Home() {
     <div className="relative min-h-screen overflow-x-hidden animated-gradient-bg">
       <SubtleGradientBackground />
       <div className="absolute top-8 left-8 z-20">
-        <h2 className="text-4xl md:text-5xl font-bold text-white">
+        <h2 className="text-5xl md:text-6xl font-bold text-white text-outline-cyan">
           YOU IMAGINE, <br /> WE CREATE
         </h2>
       </div>
