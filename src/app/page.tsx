@@ -10,9 +10,15 @@ export default function Home() {
     <div className="relative min-h-screen overflow-x-hidden animated-gradient-bg-fallback">
       <SubtleGradientBackground />
       <div className="absolute top-8 left-8 z-20">
-        <h2 className="text-5xl md:text-6xl font-bold text-white text-outline-cyan">
-          YOU IMAGINE, <br /> WE CREATE
-        </h2>
+        <div className="flex items-center gap-4">
+          <div className="flex flex-col gap-2">
+            <div className="h-2 w-16 bg-cyan-400 rounded-full"></div>
+            <div className="h-2 w-16 bg-white rounded-full"></div>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-bold text-white text-outline-cyan">
+            YOU IMAGINE, <br /> WE CREATE
+          </h2>
+        </div>
       </div>
       <Link href="#work-with-me" className="absolute top-8 right-8 z-20">
         <div className="relative w-32 h-32 md:w-48 md:h-48">
