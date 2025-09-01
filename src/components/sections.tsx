@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { Card } from '@/components/ui/card';
-import { ProjectsSection } from '@/components/projects-section';
+import { ProjectsSectionWithText } from '@/components/projects-section-with-text';
 import { Button } from './ui/button';
 import { Github, Linkedin, Mail, User, Code } from 'lucide-react';
 import Image from 'next/image';
@@ -79,7 +79,7 @@ const ContactSection: FC = () => {
 export const Sections = () => {
   return (
     <div className="relative z-0">
-      <ProjectsSection />
+      <ProjectsSectionWithText />
       <AboutSection />
       <ContactSection />
     </div>

@@ -2,11 +2,12 @@
 
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ProjectsSection } from './projects-section';
 
 const leftText = "Full-Stack Expertise";
 const rightText = "Modern Web Solutions";
 
-export function SideText() {
+function AnimatedSideText() {
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
 
@@ -43,14 +44,14 @@ export function SideText() {
     <>
       <div 
         ref={leftRef} 
-        className="absolute top-40 left-8 text-lg md:text-xl font-semibold text-white text-glow-faint hidden md:block"
+        className="absolute bottom-full left-0 text-lg md:text-xl font-semibold text-white text-glow-faint hidden md:block mb-4"
         style={{ opacity: 0 }}
       >
         {leftText}
       </div>
       <div 
         ref={rightRef} 
-        className="absolute top-40 right-8 text-lg md:text-xl font-semibold text-white text-glow-faint hidden md:block"
+        className="absolute bottom-full right-0 text-lg md:text-xl font-semibold text-white text-glow-faint hidden md:block mb-4"
         style={{ opacity: 0 }}
       >
         {rightText}
@@ -58,3 +59,16 @@ export function SideText() {
     </>
   );
 }
+
+
+export const ProjectsSectionWithText = () => {
+  return (
+    <section id="projects" className="min-h-screen py-20 px-4 md:px-8">
+      <div className="relative max-w-7xl mx-auto">
+        <AnimatedSideText />
+        <h2 className="text-4xl md:text-5xl font-bold text-center text-foreground mb-12">Projects</h2>
+        <ProjectsSection />
+      </div>
+    </section>
+  );
+};

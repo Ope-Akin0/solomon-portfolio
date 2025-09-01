@@ -3,7 +3,6 @@ import { Sections } from '@/components/sections';
 import { SubtleGradientBackground } from '@/components/subtle-gradient-background';
 import { CircularNav } from '@/components/circular-nav';
 import { AnimatedServices } from '@/components/animated-services';
-import { SideText } from '@/components/side-text';
 
 export default function Home() {
   return (
@@ -24,7 +23,6 @@ export default function Home() {
           />
         </div>
       </div>
-      <SideText />
       <Image
         src="https://picsum.photos/1920/1080"
         alt="Tech background"
