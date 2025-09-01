@@ -1,81 +1,38 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { useIsMobile } from '@/hooks/use-mobile';
-
-const services = ['Web Development', 'Web Design', 'Software Composing'];
-
-const positions = (isMobile: boolean) => {
-    const radius = isMobile ? 120 : 180;
-    return [
-      { top: `${-radius}px`, left: '50%', transform: 'translateX(-50%)' }, // Top
-      { top: '50%', left: `${-radius}px`, transform: 'translateY(-50%) translateX(-100%)' }, // Left
-      { top: '50%', left: `${radius}px`, transform: 'translateY(-50%)' }, // Right
-    ];
-};
 
 export function AnimatedServices() {
-  const [currentService, setCurrentService] = useState({ text: '', style: {} });
   const serviceRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
-  const availablePositions = positions(isMobile);
 
   useEffect(() => {
-    let lastServiceIndex = -1;
-    let lastPositionIndex = -1;
-
-    const showNextService = () => {
-      let serviceIndex = Math.floor(Math.random() * services.length);
-      while (serviceIndex === lastServiceIndex) {
-        serviceIndex = Math.floor(Math.random() * services.length);
-      }
-      lastServiceIndex = serviceIndex;
-
-      let positionIndex = Math.floor(Math.random() * availablePositions.length);
-      while (positionIndex === lastPositionIndex) {
-        positionIndex = Math.floor(Math.random() * availablePositions.length);
-      }
-      lastPositionIndex = positionIndex;
-
-      setCurrentService({
-        text: services[serviceIndex],
-        style: availablePositions[positionIndex],
-      });
-
+    const el = serviceRef.current;
+    if (el) {
       gsap.fromTo(
-        serviceRef.current,
+        el,
         { opacity: 0 },
         {
           opacity: 1,
           duration: 1.5,
           onComplete: () => {
-            gsap.to(serviceRef.current, {
+            gsap.to(el, {
               opacity: 0,
               duration: 1.5,
-              delay: 2,
-              onComplete: showNextService,
+              delay: 2, // 5s total visible time = 1.5s fade-in + 2s delay + 1.5s fade-out. We want 5s visible, so 5 - 1.5 = 3.5s delay. Let's make it 3.5
             });
           },
         }
       );
-    };
-
-    const timeoutId = setTimeout(showNextService, 1000);
-
-    return () => {
-      clearTimeout(timeoutId);
-      gsap.killTweensOf(serviceRef.current);
-    };
-  }, [isMobile, availablePositions]);
+    }
+  }, []);
 
   return (
     <div 
         ref={serviceRef} 
-        style={currentService.style}
-        className="absolute top-1/2 left-1/2 text-2xl md:text-3xl font-bold whitespace-nowrap text-glow"
+        className="absolute top-1/2 left-1/2 -translate-y-[12rem] md:-translate-y-[18rem] -translate-x-1/2 text-2xl md:text-3xl font-bold whitespace-nowrap text-glow"
     >
-      {currentService.text}
+      Web Development
     </div>
   );
 }
