@@ -43,14 +43,14 @@ export function SideText() {
     <>
       <div 
         ref={leftRef} 
-        className="absolute top-1/2 left-8 -translate-y-[10rem] md:left-16 md:-translate-y-[12rem] text-lg md:text-xl font-semibold text-white text-glow-faint hidden md:block"
+        className="absolute top-40 left-8 text-lg md:text-xl font-semibold text-white text-glow-faint hidden md:block"
         style={{ opacity: 0 }}
       >
         {leftText}
       </div>
       <div 
         ref={rightRef} 
-        className="absolute top-1/2 right-8 -translate-y-[10rem] md:right-16 md:-translate-y-[12rem] text-lg md:text-xl font-semibold text-white text-glow-faint hidden md:block"
+        className="absolute top-40 right-8 text-lg md:text-xl font-semibold text-white text-glow-faint hidden md:block"
         style={{ opacity: 0 }}
       >
         {rightText}
