@@ -6,7 +6,7 @@ import { AnimatedServices } from '@/components/animated-services';
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden animated-gradient-bg">
+    <div className="relative min-h-screen overflow-x-hidden animated-gradient-bg-fallback">
       <SubtleGradientBackground />
       <div className="absolute top-8 left-8 z-20">
         <h2 className="text-5xl md:text-6xl font-bold text-white text-outline-cyan">
