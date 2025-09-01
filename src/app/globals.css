@@ -144,6 +144,13 @@
       0 0 40px hsl(var(--primary)),
       0 0 55px hsl(var(--primary));
   }
+  
+  .text-glow-faint {
+    text-shadow:
+      0 0 2px theme('colors.white / 0.5'),
+      0 0 5px theme('colors.cyan.400 / 0.3'),
+      0 0 10px theme('colors.cyan.400 / 0.2');
+  }
 
   .animated-gradient-bg-fallback {
     background: linear-gradient(
