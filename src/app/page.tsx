@@ -3,6 +3,7 @@ import { Sections } from '@/components/sections';
 import { SubtleGradientBackground } from '@/components/subtle-gradient-background';
 import { CircularNav } from '@/components/circular-nav';
 import { AnimatedServices } from '@/components/animated-services';
+import { SideText } from '@/components/side-text';
 
 export default function Home() {
   return (
@@ -23,16 +24,7 @@ export default function Home() {
           />
         </div>
       </div>
-       <div className="absolute top-1/2 -translate-y-1/2 left-8 z-20 hidden md:block">
-        <h3 className="text-2xl font-semibold text-white text-glow-faint [writing-mode:vertical-rl] rotate-180 uppercase tracking-widest">
-          Full-Stack Expertise
-        </h3>
-      </div>
-       <div className="absolute top-1/2 -translate-y-1/2 right-8 z-20 hidden md:block">
-        <h3 className="text-2xl font-semibold text-white text-glow-faint [writing-mode:vertical-rl] uppercase tracking-widest">
-          Modern Web Solutions
-        </h3>
-      </div>
+      <SideText />
       <Image
         src="https://picsum.photos/1920/1080"
         alt="Tech background"
