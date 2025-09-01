@@ -54,7 +54,7 @@ const ContactSection: FC = () => {
         </p>
         <div className="flex justify-center items-center gap-6">
            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            <a href="mailto:hello@orbitalfolio.com">
+            <a href="mailto:opeakin2022@gmail.com">
               <Mail className="mr-2 h-5 w-5" />
               Email Me
             </a>
