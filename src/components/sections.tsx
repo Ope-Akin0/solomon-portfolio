@@ -1,3 +1,6 @@
+
+'use client';
+
 import type { FC } from 'react';
 import { Card } from '@/components/ui/card';
 import { ProjectsSection } from '@/components/projects-section';
@@ -5,7 +8,7 @@ import { Button } from './ui/button';
 import { Github, Linkedin, Mail, User, Code, PlusCircle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { AuthSensitiveContent } from './auth-sensitive-content';
+import { useAuth } from '@/hooks/use-auth';
 
 const AboutSection: FC = () => {
   return (
@@ -77,18 +80,35 @@ const ContactSection: FC = () => {
 };
 
 const ProjectsSectionWithHeader = () => {
+    const { user } = useAuth();
+    const isAuth = !!user;
+
+    const AddProjectButton = () => (
+      <Button
+        asChild={isAuth}
+        variant="ghost"
+        size="icon"
+        className="text-muted-foreground hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
+        disabled={!isAuth}
+        aria-label="Add project"
+      >
+        {isAuth ? (
+          <Link href="/admin">
+            <PlusCircle className="h-6 w-6" />
+          </Link>
+        ) : (
+          <PlusCircle className="h-6 w-6" />
+        )}
+      </Button>
+    );
+
+
     return (
         <section id="projects" className="min-h-screen py-20 px-4 md:px-8">
             <div className="relative max-w-7xl mx-auto">
                 <div className="flex justify-center items-center gap-4 mb-12">
                   <h2 className="text-4xl md:text-5xl font-bold text-center text-foreground">Projects</h2>
-                  <AuthSensitiveContent>
-                    <Button asChild variant="ghost" size="icon" className="text-muted-foreground hover:text-accent">
-                      <Link href="/admin">
-                        <PlusCircle className="h-6 w-6" />
-                      </Link>
-                    </Button>
-                  </AuthSensitiveContent>
+                  <AddProjectButton />
                 </div>
                 <ProjectsSection />
             </div>
