@@ -12,20 +12,20 @@ export default function Home() {
       <div className="absolute top-8 left-8 z-20">
         <div className="flex items-center gap-4">
           <div className="flex flex-col gap-2">
-            <div className="h-2 w-16 bg-cyan-400 rounded-full"></div>
-            <div className="h-2 w-12 bg-white rounded-full"></div>
+            <div className="h-2 w-20 bg-cyan-400 rounded-full opacity-80"></div>
+            <div className="h-2 w-16 bg-white rounded-full opacity-80"></div>
           </div>
           <h2 className="text-5xl md:text-6xl font-bold text-white text-outline-cyan">
             YOU IMAGINE, <br /> WE CREATE
           </h2>
            <div className="flex flex-col gap-2">
-            <div className="h-2 w-12 bg-cyan-400 rounded-full"></div>
-            <div className="h-2 w-16 bg-white rounded-full"></div>
+            <div className="h-2 w-16 bg-cyan-400 rounded-full opacity-80"></div>
+            <div className="h-2 w-20 bg-white rounded-full opacity-80"></div>
           </div>
         </div>
       </div>
       <Link href="#work-with-me" className="absolute top-8 right-8 z-20">
-        <div className="relative w-32 h-32 md:w-48 md:h-48">
+        <div className="relative w-28 h-28 md:w-44 md:h-44">
           <Image
             src="/images/site.jpg"
             alt="Site owner"
