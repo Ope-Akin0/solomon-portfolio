@@ -22,7 +22,7 @@ export default function Home() {
         alt="Tech background"
         data-ai-hint="robotic arm"
         fill
-        className="object-cover opacity-20 mix-blend-soft-light animate-pulse-slow"
+        className="object-cover opacity-10 mix-blend-soft-light animate-pulse-slow"
       />
       <main className="relative z-10">
         <CircularNav />

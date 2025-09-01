@@ -28,10 +28,10 @@ const prompt = ai.definePrompt({
   input: {schema: GenerateSubtleGradientInputSchema},
   output: {schema: GenerateSubtleGradientOutputSchema},
   prompt: `
-    Generate CSS for a beautiful, complex, and slow-shifting gradient animation for a dark theme portfolio.
+    Generate CSS for a beautiful, complex, and slow-shifting dark gradient animation for a dark theme portfolio. The animation should be very subtle.
     - The animation should be named 'gradient'.
-    - It should last for 15 seconds and repeat infinitely.
-    - The gradient should involve at least 4 colors, including dark blues, deep purples, and hints of magenta and cyan, creating a celestial, nebula-like effect.
+    - It should last for 20 seconds and repeat infinitely.
+    - The gradient should involve dark, deep colors like dark blues, deep purples, and dark greys, creating a celestial, nebula-like effect but much darker and less bright.
     - The gradient angle should also animate smoothly.
     - Output only the CSS containing the background property and the @keyframes rule. The class should be named .animated-gradient-bg
   `,
