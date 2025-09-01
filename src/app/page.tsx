@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Sections } from '@/components/sections';
 import { SubtleGradientBackground } from '@/components/subtle-gradient-background';
 import { CircularNav } from '@/components/circular-nav';
+import { AnimatedServices } from '@/components/animated-services';
 
 export default function Home() {
   return (
@@ -31,6 +32,7 @@ export default function Home() {
       />
       <main className="relative z-10">
         <CircularNav />
+        <AnimatedServices />
         <Sections />
       </main>
     </div>
