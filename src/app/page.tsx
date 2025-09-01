@@ -8,12 +8,12 @@ export default function Home() {
     <div className="relative min-h-screen overflow-x-hidden animated-gradient-bg">
       <SubtleGradientBackground />
       <div className="absolute top-8 right-8 z-20">
-        <div className="relative w-24 h-24 md:w-32 md:h-32">
+        <div className="relative w-24 h-24 md:w-36 md:h-36">
           <Image
-            src="/site.jpg"
+            src="/images/site.jpg"
             alt="Site owner"
-            width={128}
-            height={128}
+            width={144}
+            height={144}
             className="rounded-full object-cover w-full h-full irregular-border"
           />
         </div>

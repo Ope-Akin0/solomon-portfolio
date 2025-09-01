@@ -12,7 +12,7 @@ const AboutSection: FC = () => {
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
         <div className="md:col-span-1 flex justify-center">
           <Image
-            src="https://picsum.photos/400/400"
+            src="/images/site.jpg"
             alt="Profile picture"
             data-ai-hint="professional portrait"
             width={300}
