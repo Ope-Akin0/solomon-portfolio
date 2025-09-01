@@ -12,22 +12,21 @@ interface ProjectCardProps {
 
 export const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
   return (
-    <Card className="group flex flex-col overflow-hidden bg-card/50 backdrop-blur-sm border-border/20 hover:border-accent transition-all duration-300 hover:shadow-lg hover:shadow-accent/10 transform hover:-translate-y-2">
+    <Card className="group flex flex-col h-full overflow-hidden bg-card/50 backdrop-blur-sm border-border/20 hover:border-accent transition-all duration-300 hover:shadow-lg hover:shadow-accent/10 transform hover:-translate-y-2">
       <CardHeader className="p-0">
-        <div className="relative h-48 w-full">
+        <div className="relative aspect-[4/3] w-full">
           <Image
             src={project.imageUrl}
             alt={project.title}
-            layout="fill"
-            objectFit="cover"
-            className="transition-transform duration-300 group-hover:scale-105"
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>
       </CardHeader>
-      <CardContent className="flex-grow p-6">
+      <CardContent className="flex-grow p-6 flex flex-col">
         <CardTitle className="text-2xl font-bold text-foreground mb-2">{project.title}</CardTitle>
-        <CardDescription className="text-muted-foreground mb-4 h-20 overflow-hidden">{project.description}</CardDescription>
-        <div className="flex flex-wrap gap-2">
+        <CardDescription className="text-muted-foreground mb-4 h-20 overflow-hidden flex-grow">{project.description}</CardDescription>
+        <div className="flex flex-wrap gap-2 mt-auto">
           {project.tags.map((tag) => (
             <Badge key={tag} variant="secondary" className="bg-primary/20 text-primary border-none">
               {tag}
@@ -35,24 +34,23 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
           ))}
         </div>
       </CardContent>
-      <CardFooter className="p-6 pt-0 flex justify-between items-center">
-        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-2">
-        {project.liveUrl && (
-          <Button asChild size="sm" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="mr-2 h-4 w-4" /> Live Site
-            </a>
-          </Button>
-        )}
-        {project.githubUrl && (
-          <Button asChild size="sm" variant="ghost">
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-              <Github className="mr-2 h-4 w-4" /> GitHub
-            </a>
-          </Button>
-        )}
+      <CardFooter className="p-6 pt-0 flex justify-end items-center">
+         <div className="flex gap-2">
+            {project.liveUrl && (
+            <Button asChild size="sm" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="mr-2 h-4 w-4" /> Live Site
+                </a>
+            </Button>
+            )}
+            {project.githubUrl && (
+            <Button asChild size="sm" variant="ghost">
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                <Github className="mr-2 h-4 w-4" /> GitHub
+                </a>
+            </Button>
+            )}
         </div>
-        <div className="group-hover:opacity-0 transition-opacity duration-300 text-sm text-muted-foreground">View Project</div>
       </CardFooter>
     </Card>
   );

@@ -63,6 +63,7 @@ export function useProjects() {
             liveUrl: data.liveUrl,
             githubUrl: data.githubUrl,
             imageUrl: data.imageUrl,
+            createdAt: data.createdAt,
           } as Project);
         });
         setProjects(projectsData);

@@ -2,9 +2,10 @@ import type { FC } from 'react';
 import { Card } from '@/components/ui/card';
 import { ProjectsSection } from '@/components/projects-section';
 import { Button } from './ui/button';
-import { Github, Linkedin, Mail, User, Code } from 'lucide-react';
+import { Github, Linkedin, Mail, User, Code, PlusCircle } from 'lucide-react';
 import Image from 'next/image';
-
+import Link from 'next/link';
+import { AuthSensitiveContent } from './auth-sensitive-content';
 
 const AboutSection: FC = () => {
   return (
@@ -79,7 +80,16 @@ const ProjectsSectionWithHeader = () => {
     return (
         <section id="projects" className="min-h-screen py-20 px-4 md:px-8">
             <div className="relative max-w-7xl mx-auto">
-                <h2 className="text-4xl md:text-5xl font-bold text-center text-foreground mb-12">Projects</h2>
+                <div className="flex justify-center items-center gap-4 mb-12">
+                  <h2 className="text-4xl md:text-5xl font-bold text-center text-foreground">Projects</h2>
+                  <AuthSensitiveContent>
+                    <Button asChild variant="ghost" size="icon" className="text-muted-foreground hover:text-accent">
+                      <Link href="/admin">
+                        <PlusCircle className="h-6 w-6" />
+                      </Link>
+                    </Button>
+                  </AuthSensitiveContent>
+                </div>
                 <ProjectsSection />
             </div>
         </section>
