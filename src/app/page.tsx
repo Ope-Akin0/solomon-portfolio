@@ -3,6 +3,7 @@ import { Sections } from '@/components/sections';
 import { SubtleGradientBackground } from '@/components/subtle-gradient-background';
 import { CircularNav } from '@/components/circular-nav';
 import { AnimatedServices } from '@/components/animated-services';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
           YOU IMAGINE, <br /> WE CREATE
         </h2>
       </div>
-      <div className="absolute top-8 right-8 z-20">
+      <Link href="#work-with-me" className="absolute top-8 right-8 z-20">
         <div className="relative w-32 h-32 md:w-48 md:h-48">
           <Image
             src="/images/site.jpg"
@@ -22,7 +23,7 @@ export default function Home() {
             className="rounded-full object-cover object-top w-full h-full irregular-border"
           />
         </div>
-      </div>
+      </Link>
       <Image
         src="https://picsum.photos/1920/1080"
         alt="Tech background"

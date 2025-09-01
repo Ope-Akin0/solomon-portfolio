@@ -37,7 +37,7 @@ export const ProjectsSection: FC = () => {
           ))}
         </div>
       )}
-       <div className="mt-16 text-center">
+       <div id="work-with-me" className="mt-16 text-center">
           <Button 
             asChild
             size="lg" 
