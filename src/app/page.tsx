@@ -7,8 +7,19 @@ export default function Home() {
   return (
     <div className="relative min-h-screen overflow-x-hidden animated-gradient-bg">
       <SubtleGradientBackground />
+      <div className="absolute top-8 right-8 z-20">
+        <div className="relative w-24 h-24 md:w-32 md:h-32">
+          <Image
+            src="/site.jpg"
+            alt="Site owner"
+            width={128}
+            height={128}
+            className="rounded-full object-cover w-full h-full irregular-border"
+          />
+        </div>
+      </div>
       <Image
-        src="https://picsum.photos/1920/1080"
+        src="/site.jpg"
         alt="Celestial background"
         data-ai-hint="starry nebula"
         fill
