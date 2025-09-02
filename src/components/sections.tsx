@@ -92,7 +92,7 @@ const ProjectsSectionWithHeader = () => {
                       asChild={isAuth}
                       variant="ghost"
                       size="icon"
-                      className="text-muted-foreground hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
+                      className="text-muted-foreground rounded-full border-2 border-transparent hover:border-accent hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50"
                       disabled={!isAuth}
                       aria-label="Add project"
                     >
