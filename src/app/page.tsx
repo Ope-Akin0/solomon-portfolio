@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { Sections } from '@/components/sections';
 import { SubtleGradientBackground } from '@/components/subtle-gradient-background';

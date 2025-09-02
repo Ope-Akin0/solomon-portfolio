@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useRef } from 'react';
@@ -39,7 +40,7 @@ const AnimatedText = ({ text, positionClasses }: { text: string; positionClasses
   return (
     <div 
       ref={textRef} 
-      className={`absolute text-xl md:text-2xl font-bold text-white text-glow-faint hidden md:block ${positionClasses}`}
+      className={`absolute text-2xl md:text-3xl font-bold text-white text-glow-faint hidden md:block ${positionClasses}`}
       style={{ opacity: 0 }}
     >
       {text}
@@ -50,9 +51,11 @@ const AnimatedText = ({ text, positionClasses }: { text: string; positionClasses
 
 export function AnimatedServices() {
   return (
-    <>
-      <AnimatedText text="Full-Stack Expertise" positionClasses="bottom-1/4 left-1/4" />
-      <AnimatedText text="Modern Web Solutions" positionClasses="bottom-1/4 right-1/4" />
-    </>
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div className="relative w-full h-full max-w-7xl mx-auto">
+        <AnimatedText text="Full-Stack Expertise" positionClasses="bottom-1/3 left-[15%]" />
+        <AnimatedText text="Modern Web Solutions" positionClasses="bottom-1/3 right-[15%]" />
+      </div>
+    </div>
   );
 }
