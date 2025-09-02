@@ -83,32 +83,29 @@ const ProjectsSectionWithHeader = () => {
     const { user } = useAuth();
     const isAuth = !!user;
 
-    const AddProjectButton = () => (
-      <Button
-        asChild={isAuth}
-        variant="ghost"
-        size="icon"
-        className="text-muted-foreground hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
-        disabled={!isAuth}
-        aria-label="Add project"
-      >
-        {isAuth ? (
-          <Link href="/admin">
-            <PlusCircle className="h-6 w-6" />
-          </Link>
-        ) : (
-          <PlusCircle className="h-6 w-6" />
-        )}
-      </Button>
-    );
-
-
     return (
         <section id="projects" className="min-h-screen py-20 px-4 md:px-8">
             <div className="relative max-w-7xl mx-auto">
                 <div className="flex justify-center items-center gap-4 mb-12">
                   <h2 className="text-4xl md:text-5xl font-bold text-center text-foreground">Projects</h2>
-                  <AddProjectButton />
+                    <Button
+                      asChild={isAuth}
+                      variant="ghost"
+                      size="icon"
+                      className="text-muted-foreground hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
+                      disabled={!isAuth}
+                      aria-label="Add project"
+                    >
+                      {isAuth ? (
+                        <Link href="/admin">
+                          <PlusCircle className="h-6 w-6" />
+                        </Link>
+                      ) : (
+                        <div>
+                           <PlusCircle className="h-6 w-6" />
+                        </div>
+                      )}
+                    </Button>
                 </div>
                 <ProjectsSection />
             </div>
