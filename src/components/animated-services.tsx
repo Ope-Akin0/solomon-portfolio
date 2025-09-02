@@ -53,8 +53,8 @@ export function AnimatedServices() {
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
       <div className="relative w-full h-full max-w-7xl mx-auto">
-        <AnimatedText text="Full-Stack Expertise" positionClasses="top-1/2 left-[10%] -translate-y-[250px]" />
-        <AnimatedText text="Modern Web Solutions" positionClasses="top-1/2 right-[10%] -translate-y-[250px]" />
+        <AnimatedText text="Full-Stack Expertise" positionClasses="bottom-[25%] left-[20%]" />
+        <AnimatedText text="Modern Web Solutions" positionClasses="bottom-[25%] right-[20%]" />
       </div>
     </div>
   );
