@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { FC } from 'react';
@@ -14,6 +15,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { AnimatedServices } from './animated-services';
 
 export const ProjectsSection: FC = () => {
   const { projects, loading } = useProjects();
@@ -56,7 +58,8 @@ export const ProjectsSection: FC = () => {
         <CarouselNext className="hidden md:flex" />
       </Carousel>
 
-      <div id="work-with-me" className="mt-16 text-center">
+      <div id="work-with-me" className="mt-16 flex items-center justify-around">
+        <AnimatedServices />
         <Button
           asChild
           size="lg"
