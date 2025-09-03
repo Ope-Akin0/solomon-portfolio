@@ -24,7 +24,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Link href="#work-with-me" className="absolute top-8 right-8 z-20">
+      <Link href="#projects" className="absolute top-8 right-8 z-20">
         <div className="relative w-28 h-28 md:w-44 md:h-44">
           <Image
             src="/images/site.jpg"
