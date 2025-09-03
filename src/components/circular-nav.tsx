@@ -94,8 +94,8 @@ export function CircularNav() {
     >
       <div 
         className="absolute flex flex-col items-center pulse-breathing text-center z-10 cursor-pointer"
-        onClick={() => scrollToSection('home')}
-        aria-label="Scroll to home"
+        onClick={() => scrollToSection('work-with-me')}
+        aria-label="Scroll to work with me section"
       >
         <div className="relative">
           <Crown
