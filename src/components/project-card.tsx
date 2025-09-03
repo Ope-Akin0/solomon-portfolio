@@ -12,7 +12,10 @@ interface ProjectCardProps {
 
 export const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
   return (
-    <Card className="group flex flex-col h-full overflow-hidden bg-card/50 backdrop-blur-sm border-border/20 hover:border-accent transition-all duration-300 hover:shadow-lg hover:shadow-accent/10 transform hover:-translate-y-2">
+    <Card
+      id={project.id}
+      className="group flex flex-col h-full overflow-hidden bg-card/50 backdrop-blur-sm border-border/20 hover:border-accent transition-all duration-300 hover:shadow-lg hover:shadow-accent/10 transform hover:-translate-y-2"
+    >
       <CardHeader className="p-0">
         <div className="relative aspect-[4/3] w-full">
           <Image
