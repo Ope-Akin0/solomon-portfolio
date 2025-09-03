@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AnimatedText = ({ text, className }: { text: string; className?: string }) => {
+export const AnimatedText = ({ text, className }: { text: string; className?: string }) => {
   const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,8 +47,8 @@ const AnimatedText = ({ text, className }: { text: string; className?: string })
 export const AnimatedServices = () => {
   return (
     <>
-      <AnimatedText text="Full-Stack Expertise" className="text-center hidden md:block" />
-      <AnimatedText text="Modern Web Solutions" className="text-center hidden md:block" />
+      <AnimatedText text="Full-Stack Expertise" className="text-center" />
+      <AnimatedText text="Modern Web Solutions" className="text-center" />
     </>
   );
 };
