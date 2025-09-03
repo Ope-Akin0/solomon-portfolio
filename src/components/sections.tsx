@@ -87,7 +87,7 @@ const ProjectsSectionWithHeader = () => {
         <section id="projects" className="min-h-screen py-20 px-4 md:px-8">
             <div className="relative max-w-7xl mx-auto">
                 <div className="flex justify-center items-center gap-4 mb-12">
-                  <h2 className="text-4xl md:text-5xl font-bold text-center text-foreground">Projects</h2>
+                  <Button variant="link" id="projects-button" className="text-4xl md:text-5xl font-bold text-center text-foreground hover:no-underline">Projects</Button>
                     <Button
                       asChild={isAuth}
                       variant="ghost"
