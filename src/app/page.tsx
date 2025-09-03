@@ -4,12 +4,13 @@ import { Sections } from '@/components/sections';
 import { SubtleGradientBackground } from '@/components/subtle-gradient-background';
 import { CircularNav } from '@/components/circular-nav';
 import Link from 'next/link';
+import { AnimatedServices } from '@/components/animated-services';
 
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-x-hidden animated-gradient-bg-fallback">
       <SubtleGradientBackground />
-      <div className="absolute top-8 left-8 z-20">
+      <Link href="#projects" className="absolute top-8 left-8 z-20">
         <div className="flex items-center gap-4">
           <div className="flex flex-col gap-2">
             <div className="h-2 w-20 bg-cyan-400 rounded-full opacity-80"></div>
@@ -23,7 +24,7 @@ export default function Home() {
             <div className="h-2 w-20 bg-white rounded-full opacity-80"></div>
           </div>
         </div>
-      </div>
+      </Link>
       <Link href="#projects" className="absolute top-8 right-8 z-20">
         <div className="relative w-28 h-28 md:w-44 md:h-44">
           <Image
