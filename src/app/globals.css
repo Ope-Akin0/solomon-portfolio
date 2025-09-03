@@ -106,6 +106,22 @@
     }
   }
 
+  .pulse-breathing-button {
+    animation: pulse-breathing-button 3s ease-in-out infinite;
+    box-shadow: 0 0 10px theme('colors.cyan.400 / 0'), 0 0 20px theme('colors.fuchsia.500 / 0');
+  }
+
+  @keyframes pulse-breathing-button {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 10px theme('colors.cyan.400 / 0.2'), 0 0 20px theme('colors.fuchsia.500 / 0.2');
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px theme('colors.cyan.400 / 0.5'), 0 0 40px theme('colors.fuchsia.500 / 0.5');
+    }
+  }
+
   .text-gradient {
     @apply text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500;
   }

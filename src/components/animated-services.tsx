@@ -14,40 +14,36 @@ export const AnimatedText = ({ text, className }: { text: string; className?: st
     const el = textRef.current;
     if (!el) return;
     
-    // Animate into view
-    gsap.fromTo(
-      el,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        delay: Math.random() * 0.5,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top bottom-=100',
-          toggleActions: 'play none none none',
-        },
-      }
-    );
+    // Animate to appear and disappear
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: 'top bottom-=100',
+        toggleActions: 'play none none none',
+      },
+      repeat: -1, 
+      repeatDelay: 1
+    });
+
+    tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 1.5, ease: 'power2.inOut' })
+      .to(el, { opacity: 0, duration: 1.5, ease: 'power2.inOut', delay: 2 });
+
   }, []);
 
   return (
     <div 
       ref={textRef} 
-      className={`text-xl md:text-2xl font-bold text-white text-glow-faint opacity-0 ${className}`}
+      className={`text-lg md:text-xl font-bold text-white text-glow-faint opacity-0 ${className}`}
     >
       {text}
     </div>
   );
 };
 
-
 export const AnimatedServices = () => {
   return (
     <>
-      <AnimatedText text="Full-Stack Expertise" className="text-center" />
+      <AnimatedText text="Software composing" className="text-center" />
       <AnimatedText text="Modern Web Solutions" className="text-center" />
     </>
   );
