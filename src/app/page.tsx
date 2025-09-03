@@ -4,7 +4,6 @@ import { Sections } from '@/components/sections';
 import { SubtleGradientBackground } from '@/components/subtle-gradient-background';
 import { CircularNav } from '@/components/circular-nav';
 import Link from 'next/link';
-import { AnimatedServices } from '@/components/animated-services';
 
 export default function Home() {
   return (
