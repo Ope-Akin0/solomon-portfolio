@@ -58,7 +58,7 @@ export const ProjectsSection: FC = () => {
         <CarouselNext className="hidden md:flex" />
       </Carousel>
 
-      <div id="work-with-me" className="mt-16 flex items-center justify-around">
+      <div id="work-with-me" className="mt-16 flex items-center justify-between">
         <AnimatedServices />
         <Button
           asChild

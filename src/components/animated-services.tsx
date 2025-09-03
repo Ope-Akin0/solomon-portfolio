@@ -3,6 +3,9 @@
 
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AnimatedText = ({ text, className }: { text: string; className?: string }) => {
   const textRef = useRef<HTMLDivElement>(null);
@@ -19,7 +22,7 @@ const AnimatedText = ({ text, className }: { text: string; className?: string })
         opacity: 1,
         y: 0,
         duration: 1,
-        delay: Math.random() * 1.5,
+        delay: Math.random() * 0.5,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: el,
@@ -33,7 +36,7 @@ const AnimatedText = ({ text, className }: { text: string; className?: string })
   return (
     <div 
       ref={textRef} 
-      className={`text-2xl md:text-3xl font-bold text-white text-glow-faint opacity-0 ${className}`}
+      className={`text-xl md:text-2xl font-bold text-white text-glow-faint opacity-0 ${className}`}
     >
       {text}
     </div>
@@ -44,8 +47,8 @@ const AnimatedText = ({ text, className }: { text: string; className?: string })
 export const AnimatedServices = () => {
   return (
     <>
-      <AnimatedText text="Full-Stack Expertise" className="hidden md:block" />
-      <AnimatedText text="Modern Web Solutions" className="hidden md:block" />
+      <AnimatedText text="Full-Stack Expertise" className="text-center hidden md:block" />
+      <AnimatedText text="Modern Web Solutions" className="text-center hidden md:block" />
     </>
   );
 };
