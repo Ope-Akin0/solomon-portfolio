@@ -15,7 +15,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { AnimatedServices, AnimatedText } from './animated-services';
+import { AnimatedText } from './animated-services';
 
 export const ProjectsSection: FC = () => {
   const { projects, loading } = useProjects();
@@ -59,7 +59,7 @@ export const ProjectsSection: FC = () => {
       </Carousel>
 
       <div id="work-with-me" className="mt-16 flex items-center justify-between">
-        <AnimatedText text="Full-Stack Expertise" className="text-center" />
+        <AnimatedText text="Software composing" />
         <Button
           asChild
           size="lg"
@@ -70,7 +70,7 @@ export const ProjectsSection: FC = () => {
             <ArrowRight className="ml-2 h-6 w-6" />
           </a>
         </Button>
-         <AnimatedText text="Modern Web Solutions" className="text-center" />
+         <AnimatedText text="Modern Web Solutions" />
       </div>
     </div>
   );
