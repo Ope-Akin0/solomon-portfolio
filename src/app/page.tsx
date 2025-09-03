@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Sections } from '@/components/sections';
 import { SubtleGradientBackground } from '@/components/subtle-gradient-background';
 import { CircularNav } from '@/components/circular-nav';
-import Link from 'next/link';
+import { ScrollLink } from '@/components/scroll-link';
 
 export default function Home() {
   return (
@@ -24,7 +24,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Link href="#projects-button" className="absolute top-8 right-8 z-20">
+      <ScrollLink href="#projects-button" className="absolute top-8 right-8 z-20">
         <div className="relative w-28 h-28 md:w-44 md:h-44">
           <Image
             src="/images/site.jpg"
@@ -33,7 +33,7 @@ export default function Home() {
             className="rounded-full object-cover object-top w-full h-full irregular-border"
           />
         </div>
-      </Link>
+      </ScrollLink>
       <Image
         src="https://picsum.photos/1920/1080"
         alt="Tech background"
