@@ -36,8 +36,8 @@ const pricingPlans = [
   },
   {
     title: 'GOLD',
-    priceNaira: '₦300,000',
-    priceUsd: '(~$200)',
+    priceNaira: '$800',
+    priceUsd: '',
     description: 'Best for E-commerce Websites',
     features: ['Up to 20 Pages', 'Responsive Design', 'SEO Optimization', '5 Revisions'],
     examples: [
