@@ -48,9 +48,9 @@ Best regards,
     >
       <CardHeader className="p-6">
         <CardTitle className={cn("text-2xl font-bold mb-2", plan.isFeatured ? "text-gradient" : "text-foreground")}>{plan.title}</CardTitle>
-        <div className="flex items-baseline gap-2">
+        <div className="flex justify-center items-baseline gap-2">
           <span className="text-4xl font-extrabold text-foreground">{plan.priceNaira}</span>
-          <span className="text-xl font-medium text-muted-foreground">{plan.priceUsd}</span>
+          {plan.priceUsd && <span className="text-xl font-medium text-muted-foreground">{plan.priceUsd}</span>}
         </div>
         <CardDescription className="pt-2">{plan.description}</CardDescription>
       </CardHeader>

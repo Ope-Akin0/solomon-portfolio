@@ -7,8 +7,8 @@ import { PricingCard } from './pricing-card';
 const pricingPlans = [
   {
     title: 'BASIC',
-    priceNaira: '₦90,000',
-    priceUsd: '(~$60)',
+    priceNaira: '$60',
+    priceUsd: '',
     description: 'Best for Personal Websites',
     features: ['Up to 5 Pages', 'Responsive Design', 'SEO Optimization', '1 Revision'],
     examples: [
@@ -21,8 +21,8 @@ const pricingPlans = [
   },
   {
     title: 'STANDARD',
-    priceNaira: '₦180,000',
-    priceUsd: '(~$120)',
+    priceNaira: '$120',
+    priceUsd: '',
     description: 'Best for Small Business Websites',
     features: ['Up to 10 Pages', 'Responsive Design', 'SEO Optimization', '3 Revisions'],
     examples: [
