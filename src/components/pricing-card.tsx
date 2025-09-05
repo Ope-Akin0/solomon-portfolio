@@ -19,6 +19,26 @@ interface PricingCardProps {
 }
 
 export function PricingCard({ plan }: PricingCardProps) {
+  const recipientEmail = 'opeakin2022@gmail.com';
+  const subject = `Inquiry about the ${plan.title} Plan`;
+  const body = `Hello Akinde,
+
+I'm interested in your services and would like to discuss the ${plan.title} Plan.
+
+Here are the details of the plan I'm interested in:
+- Plan: ${plan.title}
+- Price: ${plan.priceNaira} ${plan.priceUsd}
+
+[Please add your project details or any questions you have here.]
+
+Looking forward to hearing from you.
+
+Best regards,
+[Your Name]
+`;
+
+  const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
   return (
     <Card
       className={cn(
@@ -66,7 +86,7 @@ export function PricingCard({ plan }: PricingCardProps) {
             plan.isFeatured ? "bg-primary hover:bg-primary/90" : "bg-gradient-to-r from-cyan-400 to-fuchsia-500 hover:opacity-90"
           )}
         >
-          <a href="#contact">Choose Plan</a>
+          <a href={mailtoLink}>Choose Plan</a>
         </Button>
       </CardFooter>
     </Card>
