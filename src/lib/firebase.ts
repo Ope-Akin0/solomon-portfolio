@@ -15,7 +15,8 @@ const firebaseConfig = {
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 initializeFirestore(app, {
-  experimentalAutoDetectLongPolling: false,
+  experimentalAutoDetectLongPolling: true,
+  preferRest: true
 });
 
 const auth = getAuth(app);
