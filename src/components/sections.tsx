@@ -1,4 +1,3 @@
-
 'use client';
 
 import type { FC } from 'react';
@@ -10,6 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/use-auth';
 import { PricingSection } from './pricing-section';
+import { ServicesSection } from './services-section';
 
 const AboutSection: FC = () => {
   return (
@@ -29,7 +29,7 @@ const AboutSection: FC = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">About Me</h2>
           <div className="space-y-4 text-lg text-muted-foreground">
             <p>
-              My name is Akinde Solomon O., and I am a graduate of Biochemistry from Nigeria. My fascination with technology and the endless possibilities of the web led me on a journey into tech, where I discovered my passion for web design.
+              My name is Akinde Solomon O., a graduate of Biochemistry from Nigeria. My fascination with technology and the endless possibilities of the web led me to begin my journey in tech as a web designer.
             </p>
             <p>
               I quickly fell in love with turning complex problems into beautiful, intuitive digital experiences. The journey has had its challenges, but I continue to push forward, driven by my passion to create and innovate. My core skills include <span className="text-primary font-semibold">HTML</span>, <span className="text-primary font-semibold">CSS</span>, <span className="text-primary font-semibold">Bootstrap</span>, and <span className="text-primary font-semibold">JavaScript</span>. Recently, I've embraced <span className="text-primary font-semibold">software composing</span>, which has taken my creativity to another level, allowing me to flawlessly build full-stack applications like the ones you see in my projects.
@@ -114,6 +114,7 @@ export const Sections = () => {
   return (
     <div className="relative z-0">
       <ProjectsSectionWithHeader />
+      <ServicesSection />
       <AboutSection />
       <PricingSection />
       <ContactSection />
