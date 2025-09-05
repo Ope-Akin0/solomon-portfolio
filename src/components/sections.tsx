@@ -65,7 +65,7 @@ const ContactSection: FC = () => {
             </a>
           </Button>
            <Button asChild variant="outline" size="icon" className="h-12 w-12 border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <a href="https://github.com/asod-1" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <Github />
             </a>
           </Button>
