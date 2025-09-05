@@ -10,6 +10,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import {defineFlow, run} from 'genkit';
 
 const GenerateSubtleGradientInputSchema = z.object({});
 export type GenerateSubtleGradientInput = z.infer<typeof GenerateSubtleGradientInputSchema>;
@@ -42,6 +43,13 @@ const generateSubtleGradientFlow = ai.defineFlow(
     name: 'generateSubtleGradientFlow',
     inputSchema: GenerateSubtleGradientInputSchema,
     outputSchema: GenerateSubtleGradientOutputSchema,
+    retry: {
+      maxAttempts: 5,
+      backoff: {
+        duration: '1s',
+        multiplier: 2,
+      },
+    },
   },
   async input => {
     const {output} = await prompt(input);
