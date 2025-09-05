@@ -5,7 +5,7 @@ const services = [
   {
     icon: <Blocks className="h-10 w-10 text-primary" />,
     title: 'Software Composing',
-    description: 'Crafting unique, full-stack solutions by composing modern technologies and services.',
+    description: 'Crafting unique, full-stack solutions by composing modern technologies and services, using artificial intelligence.',
   },
   {
     icon: <Code className="h-10 w-10 text-primary" />,
