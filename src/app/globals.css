@@ -211,3 +211,11 @@ body {
 h1 { font-size: clamp(1.75rem, 4vw, 3rem); }
 h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
 p  { font-size: clamp(1rem, 2.5vw, 1.25rem); }
+
+/* Responsive overrides - added by setup-responsive.sh */
+@media (max-width: 768px) {
+  .no-animate-sm {
+    animation: none !important;
+    transform: none !important;
+  }
+}
